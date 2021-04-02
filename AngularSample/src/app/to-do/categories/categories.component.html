@@ -1,3 +1,18 @@
 <div class="categories-header">
   <i class="ms-Icon ms-Icon--ChevronLeft iconSize-24"></i>
 </div>
+<ul>
+  <li *ngFor="let category of categories" (click)="selectedCategory($event)">
+    <div class="category" id="{{category.id}}"><i class="{{ category.icon }}"></i>{{ category.name }}</div>
+  </li>
+</ul>
+<div class="input-area">
+  <i class="ms-Icon ms-Icon--Add"></i>
+  <input
+    type="text"
+    id="newList"
+    placeholder="New list"
+    [(ngModel)]="newList"
+    (keydown)="addList($event)"
+  />
+</div>
