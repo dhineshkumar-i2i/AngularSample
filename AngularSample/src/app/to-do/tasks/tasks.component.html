@@ -1,5 +1,19 @@
-tasks works!
-{{tasksToBeDisplayed.categoryName}}
-<div *ngFor="let task of tasksToBeDisplayed.tasks">
-  hi
+<div class="task-page-name">{{currentListName}}</div>
+<div class="input-area">
+  <i class="ms-Icon ms-Icon--Add"></i>
+  <input
+    type="text"
+    id="newTask"
+    placeholder="Add a Task"
+    [(ngModel)]="newTask"
+    (keydown)="addTask($event)"
+  />
 </div>
+<div *ngFor="let task of allTasks.slice().reverse()">
+  <div *ngIf="(task.categoryId == currentListId)"  class="task-name">
+    <i class='ms-Icon ms-Icon--CircleRing'></i>{{task.name}}
+  </div>
+  
+</div>
+
+<div class="background-lines"></div>

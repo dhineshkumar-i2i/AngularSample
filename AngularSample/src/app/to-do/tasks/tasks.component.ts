@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tasks',
@@ -6,11 +6,24 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
-  @Input() tasksToBeDisplayed: any;
+  @Input() currentListId: any;
+  @Input() currentListName: any;
+  @Input() allTasks:any;
+  @Output() newTaskEvent = new EventEmitter;
+
+  newTask: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addTask(event: any) {
+    if (event.which == '13') {
+      console.log(this.newTask);
+      this.newTaskEvent.emit(this.newTask);
+      this.newTask = "";
+    }
   }
 
 }

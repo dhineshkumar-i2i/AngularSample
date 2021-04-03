@@ -34,16 +34,20 @@ export class ToDoComponent implements OnInit {
     },
   ];
   totalListCount = this.categories.length;
+  totalTaskCount = 0;
   currentListId = 'list5';
-  selectedCategory!: category;
-  allTasks!: task[];
-  tasksToBeDisplayed!: taskModel;
+  currentListName = 'Tasks';
+  allTasks: task[] = [
+    {
+      name: '',
+      id: '',
+      categoryId: '',
+    },
+  ];
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.currentCategory(this.currentListId);
-  }
+  ngOnInit(): void {}
 
   createList(event: string) {
     this.totalListCount += 1;
@@ -56,34 +60,25 @@ export class ToDoComponent implements OnInit {
 
   currentCategory(event: string) {
     this.currentListId = event;
+    this.currentListName = this.categories[
+      this.categories.findIndex((category) => category.id == event)
+    ].name;
     console.log(this.currentListId);
-    this.selectedCategory = this.categories.find(
-      (category) => category.id == this.currentListId
-    )!;
-    console.log(this.selectedCategory);
-    this.tasksToBeDisplayed.categoryName = this.selectedCategory.name;
-    for (var task of this.allTasks ) {
-      if (task.categoryId == this.currentListId) {
-        this.tasksToBeDisplayed.tasks.push(task);
-      }
-    }
   }
-}
 
-interface category {
-  id: string;
-  name: string;
-  icon: string;
+  createTask(event: string) {
+    this.totalTaskCount += 1;
+    this.allTasks.push({
+      id: 'task' + this.totalTaskCount,
+      name: event,
+      categoryId: this.currentListId
+    });
+    
+  }
 }
 
 interface task {
   id: string;
   name: string;
   categoryId: string;
-  subTask: string[];
-}
-
-interface taskModel {
-  categoryName: string;
-  tasks: task[];
 }

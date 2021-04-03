@@ -1,3 +1,12 @@
-<app-categories (newListEvent)="createList($event)" (currentCategory)="currentCategory($event)" [categories]="categories"></app-categories>
-<app-tasks [tasksToBeDisplayed]="tasksToBeDisplayed"></app-tasks>
+<app-categories
+  (newListEvent)="createList($event)"
+  (currentCategory)="currentCategory($event)"
+  [categories]="categories"
+></app-categories>
+<app-tasks
+  (newTaskEvent)="createTask($event)"
+  [currentListId]="currentListId"
+  [currentListName]="currentListName"
+  [allTasks]="allTasks"
+></app-tasks>
 <!-- <app-sub-tasks></app-sub-tasks> -->
