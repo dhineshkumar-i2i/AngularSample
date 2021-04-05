@@ -1,0 +1,18 @@
+<div class="task-page-name">{{ dataModel.currentListName }}</div>
+<div class="input-area">
+  <i class="ms-Icon ms-Icon--Add"></i>
+  <input
+    type="text"
+    id="newTask"
+    placeholder="Add a Task"
+    [(ngModel)]="newTask"
+    (keydown.enter)="addTask()"
+  />
+</div>
+<div *ngFor="let task of dataModel.allTasks.slice().reverse()">
+  <div *ngIf="task.categoryId == dataModel.currentListId" class="task-name">
+    <i class="ms-Icon ms-Icon--CircleRing"></i>{{ task.name }}
+  </div>
+</div>
+
+<div class="background-lines"></div>

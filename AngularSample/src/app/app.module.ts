@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { ToDoComponent } from './to-do/to-do.component';
-import { CategoriesComponent } from './to-do/categories/categories.component';
-import { TasksComponent } from './to-do/tasks/tasks.component';
-import { SubTasksComponent } from './to-do/sub-tasks/sub-tasks.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { ToDoComponent } from './components/to-do/to-do.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { SubTasksComponent } from './components/sub-tasks/sub-tasks.component';
+import { DataModelService } from './data-model.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { SubTasksComponent } from './to-do/sub-tasks/sub-tasks.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DataModelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

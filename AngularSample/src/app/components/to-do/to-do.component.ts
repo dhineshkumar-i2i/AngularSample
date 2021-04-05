@@ -33,7 +33,6 @@ export class ToDoComponent implements OnInit {
       icon: 'ms-Icon ms-Icon--Home',
     },
   ];
-  totalListCount = this.categories.length;
   totalTaskCount = 0;
   currentListId = 'list5';
   currentListName = 'Tasks';
@@ -48,15 +47,6 @@ export class ToDoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  createList(event: string) {
-    this.totalListCount += 1;
-    this.categories.push({
-      id: 'list' + this.totalListCount,
-      name: event,
-      icon: 'ms-Icon ms-Icon--BulletedList iconSize-24',
-    });
-  }
 
   currentCategory(event: string) {
     this.currentListId = event;

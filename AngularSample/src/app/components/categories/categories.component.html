@@ -2,7 +2,7 @@
   <i class="ms-Icon ms-Icon--ChevronLeft iconSize-24"></i>
 </div>
 <ul>
-  <li *ngFor="let category of categories" (click)="selectedCategory($event)">
+  <li *ngFor="let category of dataModel.categories" (click)="selectedCategory($event)">
     <div class="category" id="{{category.id}}"><i class="{{ category.icon }}"></i>{{ category.name }}</div>
   </li>
 </ul>
@@ -13,6 +13,6 @@
     id="newList"
     placeholder="New list"
     [(ngModel)]="newList"
-    (keydown)="addList($event)"
+    (keydown.enter)="addList()"
   />
 </div>
