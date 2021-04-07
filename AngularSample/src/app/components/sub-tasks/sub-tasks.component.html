@@ -1,1 +1,16 @@
-<p>sub-tasks works!</p>
+<div class="this-task">
+  <i class="ms-Icon ms-Icon--CircleRing"></i>
+  <div class="header-task-name">{{dataModel.selectedTask.name}}</div>
+</div>
+<div *ngFor="let subtask of dataModel.selectedTask.SubTasks" class="new-step">
+  <i class="ms-Icon ms-Icon--CircleRing"></i>{{subtask}}
+</div>
+<div class="new-step">
+  <i class="ms-Icon ms-Icon--Add"></i>
+  <input
+  type="text"
+  id="newStep"
+  placeholder="Add Step"
+  [(ngModel)]="newStep"
+  (keydown.enter)="addStep()"/>
+</div>

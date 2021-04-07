@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataModelService } from 'src/app/data-model.service';
+import { DataModelService } from 'src/app/services/data-model.service';
 
 @Component({
   selector: 'app-tasks',
@@ -7,7 +7,6 @@ import { DataModelService } from 'src/app/data-model.service';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-
   newTask: string = '';
 
   constructor(public dataModel: DataModelService) {}
@@ -18,5 +17,10 @@ export class TasksComponent implements OnInit {
     console.log(this.newTask);
     this.dataModel.createTask(this.newTask);
     this.newTask = '';
+  }
+
+  selectedTask(event: any) {
+    console.log(event.target.id);
+    this.dataModel.currentTask(event.target.id);
   }
 }

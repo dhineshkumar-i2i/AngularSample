@@ -10,7 +10,7 @@ import { ToDoComponent } from './components/to-do/to-do.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { SubTasksComponent } from './components/sub-tasks/sub-tasks.component';
-import { DataModelService } from './data-model.service';
+import { DataModelService } from './services/data-model.service';
 
 @NgModule({
   declarations: [

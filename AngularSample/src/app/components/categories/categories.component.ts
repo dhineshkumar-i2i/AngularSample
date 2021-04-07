@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataModelService } from 'src/app/data-model.service';
+import { DataModelService } from 'src/app/services/data-model.service';
 
 @Component({
   selector: 'app-categories',
@@ -22,5 +22,6 @@ export class CategoriesComponent implements OnInit {
   selectedCategory(event: any) {
     console.log(event.target.id);
     this.dataModel.currentCategory(event.target.id);
+    this.dataModel.currentTask('');
   }
 }

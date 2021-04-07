@@ -4,11 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataModelService {
-
   categories = [
     {
       id: 'list1',
-      name: 'My day',
+      name: 'My Day',
       icon: 'ms-Icon ms-Icon--Sunny iconSize-24',
     },
     {
@@ -30,17 +29,24 @@ export class DataModelService {
       id: 'list5',
       name: 'Tasks',
       icon: 'ms-Icon ms-Icon--Home iconSize-24',
-    }
+    },
   ];
-  totalListCount = this.categories.length;
-  totalTaskCount = 0;
-  currentListId = 'list5';
-  currentListName = 'Tasks';
+  totalListCount: number = this.categories.length;
+  totalTaskCount: number = 0;
+  currentListId: string = 'list5';
+  currentListName: string = 'Tasks';
+  selectedTask: task = {
+    name: '',
+    id: '',
+    categoryId: '',
+    SubTasks: [],
+  };
   allTasks: task[] = [
     {
       name: '',
       id: '',
       categoryId: '',
+      SubTasks: [],
     },
   ];
 
@@ -68,9 +74,22 @@ export class DataModelService {
     this.allTasks.push({
       id: 'task' + this.totalTaskCount,
       name: newTask,
-      categoryId: this.currentListId
+      categoryId: this.currentListId,
+      SubTasks: [],
     });
-    
+  }
+
+  currentTask(selectedTaskId: string) {
+    this.selectedTask = this.allTasks[
+      this.allTasks.findIndex((task) => task.id == selectedTaskId)
+    ];
+    console.log(this.currentTask);
+  }
+
+  createStep(newStep: string) {
+    this.allTasks[
+      this.allTasks.findIndex((task) => task.id == this.selectedTask.id)
+    ].SubTasks.push(newStep);
   }
 }
 
@@ -78,4 +97,5 @@ interface task {
   id: string;
   name: string;
   categoryId: string;
+  SubTasks: string[];
 }

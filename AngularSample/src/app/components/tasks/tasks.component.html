@@ -10,7 +10,7 @@
   />
 </div>
 <div *ngFor="let task of dataModel.allTasks.slice().reverse()">
-  <div *ngIf="task.categoryId == dataModel.currentListId" class="task-name">
+  <div *ngIf="task.categoryId == dataModel.currentListId" class="task-name" id={{task.id}} (click)="selectedTask($event)">
     <i class="ms-Icon ms-Icon--CircleRing"></i>{{ task.name }}
   </div>
 </div>
