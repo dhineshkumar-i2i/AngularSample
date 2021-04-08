@@ -12,8 +12,10 @@ export class SubTasksComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addStep() {
-    console.log(this.newStep);
+  /**
+   * This method adds a new step to a particular task. 
+   */
+  addStep(): void {
     this.dataModel.createStep(this.newStep);
     this.newStep = '';
   }

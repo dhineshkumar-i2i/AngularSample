@@ -13,14 +13,20 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addTask() {
-    console.log(this.newTask);
+  /**
+   * This method calls the service method to create a new task
+   */
+  addTask(): void {
     this.dataModel.createTask(this.newTask);
     this.newTask = '';
   }
 
-  selectedTask(event: any) {
-    console.log(event.target.id);
+  /**
+   * This method updates the selected task by the user when clicked.
+   *
+   * @param event holds all the information about the click event.
+   */
+  selectedTask(event: any): void {
     this.dataModel.currentTask(event.target.id);
   }
 }

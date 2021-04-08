@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataModelService {
-  categories = [
+  categories: category[] = [
     {
       id: 'list1',
       name: 'My Day',
@@ -52,7 +52,12 @@ export class DataModelService {
 
   constructor() {}
 
-  createList(listName: string) {
+  /**
+   * This method creates a new list and adds to category List.
+   *
+   * @param listName the name of the New list.
+   */
+  createList(listName: string): void {
     this.totalListCount += 1;
     this.categories.push({
       id: 'list' + this.totalListCount,
@@ -61,15 +66,24 @@ export class DataModelService {
     });
   }
 
-  currentCategory(selectedCategory: string) {
-    this.currentListId = selectedCategory;
+  /**
+   * This method updates the current selected category.
+   *
+   * @param selectedCategoryId the id of the seleceted category.
+   */
+  currentCategory(selectedCategoryId: string): void {
+    this.currentListId = selectedCategoryId;
     this.currentListName = this.categories[
-      this.categories.findIndex((category) => category.id == selectedCategory)
+      this.categories.findIndex((category) => category.id == selectedCategoryId)
     ].name;
-    console.log(this.currentListId);
   }
 
-  createTask(newTask: string) {
+  /**
+   * This method creates a new task and adds to task list.
+   *
+   * @param newTask the name of the new task.
+   */
+  createTask(newTask: string): void {
     this.totalTaskCount += 1;
     this.allTasks.push({
       id: 'task' + this.totalTaskCount,
@@ -79,18 +93,33 @@ export class DataModelService {
     });
   }
 
-  currentTask(selectedTaskId: string) {
+  /**
+   * This method updates the current selected task.
+   *
+   * @param selectedTaskId the id of the selected task.
+   */
+  currentTask(selectedTaskId: string): void {
     this.selectedTask = this.allTasks[
       this.allTasks.findIndex((task) => task.id == selectedTaskId)
     ];
-    console.log(this.currentTask);
   }
 
-  createStep(newStep: string) {
+  /**
+   * This method creates a step for a particular task.
+   *
+   * @param newStep the new step to be created.
+   */
+  createStep(newStep: string): void {
     this.allTasks[
       this.allTasks.findIndex((task) => task.id == this.selectedTask.id)
     ].SubTasks.push(newStep);
   }
+}
+
+interface category {
+  id: string;
+  name: string;
+  icon: string;
 }
 
 interface task {

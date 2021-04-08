@@ -7,20 +7,27 @@ import { DataModelService } from 'src/app/services/data-model.service';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  public newList = '';
+  newList: string = '';
 
   constructor(public dataModel: DataModelService) {}
 
   ngOnInit(): void {}
 
-  addList() {
+  /**
+   * This method calls the service to create a new list
+   */
+  addList(): void {
     this.dataModel.createList(this.newList);
-    console.log(this.newList);
     this.newList = '';
   }
 
-  selectedCategory(event: any) {
-    console.log(event.target.id);
+  /**
+   * This method updates the selected category by the user when
+   * the particular category is clicked.
+   *
+   * @param event holds all the information about the click event.
+   */
+  selectedCategory(event: any): void {
     this.dataModel.currentCategory(event.target.id);
     this.dataModel.currentTask('');
   }
