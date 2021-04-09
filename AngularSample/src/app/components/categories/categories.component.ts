@@ -29,6 +29,5 @@ export class CategoriesComponent implements OnInit {
    */
   selectedCategory(event: any): void {
     this.dataModel.currentCategory(event.target.id);
-    this.dataModel.currentTask('');
   }
 }

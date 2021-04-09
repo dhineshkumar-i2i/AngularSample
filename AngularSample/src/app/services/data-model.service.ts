@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Category, Task } from '../model/Model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataModelService {
-  categories: category[] = [
+  public categories: Category[] = [
     {
       id: 'list1',
       name: 'My Day',
@@ -31,24 +32,18 @@ export class DataModelService {
       icon: 'ms-Icon ms-Icon--Home iconSize-24',
     },
   ];
-  totalListCount: number = this.categories.length;
-  totalTaskCount: number = 0;
-  currentListId: string = 'list5';
-  currentListName: string = 'Tasks';
-  selectedTask: task = {
-    name: '',
-    id: '',
-    categoryId: '',
-    SubTasks: [],
-  };
-  allTasks: task[] = [
-    {
-      name: '',
-      id: '',
-      categoryId: '',
-      SubTasks: [],
-    },
-  ];
+  public currentListName: string = 'Tasks';
+  public selectedTask: Task | null = null;
+  //public selectedTask: Task = {
+  //  id: '',
+  //  name: '',
+  //  categoryId: '',
+  //  SubTasks: [],
+  //};
+  public allTasks: Task[] = [];
+  private totalListCount: number = this.categories.length;
+  private totalTaskCount: number = 0;
+  private currentListId: string = 'list5';
 
   constructor() {}
 
@@ -57,7 +52,7 @@ export class DataModelService {
    *
    * @param listName the name of the New list.
    */
-  createList(listName: string): void {
+  public createList(listName: string): void {
     this.totalListCount += 1;
     this.categories.push({
       id: 'list' + this.totalListCount,
@@ -71,11 +66,12 @@ export class DataModelService {
    *
    * @param selectedCategoryId the id of the seleceted category.
    */
-  currentCategory(selectedCategoryId: string): void {
+  public currentCategory(selectedCategoryId: string): void {
     this.currentListId = selectedCategoryId;
     this.currentListName = this.categories[
       this.categories.findIndex((category) => category.id == selectedCategoryId)
     ].name;
+    this.selectedTask = null;
   }
 
   /**
@@ -83,7 +79,7 @@ export class DataModelService {
    *
    * @param newTask the name of the new task.
    */
-  createTask(newTask: string): void {
+  public createTask(newTask: string): void {
     this.totalTaskCount += 1;
     this.allTasks.push({
       id: 'task' + this.totalTaskCount,
@@ -98,7 +94,7 @@ export class DataModelService {
    *
    * @param selectedTaskId the id of the selected task.
    */
-  currentTask(selectedTaskId: string): void {
+  public currentTask(selectedTaskId: string): void {
     this.selectedTask = this.allTasks[
       this.allTasks.findIndex((task) => task.id == selectedTaskId)
     ];
@@ -109,22 +105,11 @@ export class DataModelService {
    *
    * @param newStep the new step to be created.
    */
-  createStep(newStep: string): void {
+  public createStep(newStep: string): void {
     this.allTasks[
-      this.allTasks.findIndex((task) => task.id == this.selectedTask.id)
+      this.allTasks.findIndex(
+        (task) => task.id == (this.selectedTask && this.selectedTask.id)
+      )
     ].SubTasks.push(newStep);
   }
-}
-
-interface category {
-  id: string;
-  name: string;
-  icon: string;
-}
-
-interface task {
-  id: string;
-  name: string;
-  categoryId: string;
-  SubTasks: string[];
 }
