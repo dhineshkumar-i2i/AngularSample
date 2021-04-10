@@ -10,7 +10,8 @@ import { ToDoComponent } from './components/to-do/to-do.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { SubTasksComponent } from './components/sub-tasks/sub-tasks.component';
-import { DataModelService } from './services/data-model.service';
+import { DataModelService } from './services/dataSource/data-model.service';
+import { AuthenticateService } from './services/authenticate/authenticate.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { DataModelService } from './services/data-model.service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [DataModelService],
+  providers: [DataModelService,AuthenticateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

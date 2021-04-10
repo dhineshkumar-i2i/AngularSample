@@ -1,7 +1,7 @@
 Enter your E-mail Id:
-<input type="string" class="mail" id="mail">
+<input type="string" class="mail" id="mail" [(ngModel)]="mail">
 <br>
 Enter the Password:
-<input type="string" class="pass" id="pass">
+<input type="string" class="pass" id="pass" [(ngModel)]="pass">
 <br>
-<button routerLink="/to-do">submit</button>
+<button (click)="verifyCredentials()" >submit</button>

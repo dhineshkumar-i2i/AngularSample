@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataModelService } from 'src/app/services/data-model.service';
+import { DataModelService } from 'src/app/services/dataSource/data-model.service';
 
 @Component({
   selector: 'app-tasks',

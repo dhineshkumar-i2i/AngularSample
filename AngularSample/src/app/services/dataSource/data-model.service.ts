@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Category, Task } from '../model/Model';
+import { Category, Task } from '../../model/Model';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +33,7 @@ export class DataModelService {
     },
   ];
   public currentListName: string = 'Tasks';
+  public currentListId: string = 'list5';
   public selectedTask: Task | null = null;
   //public selectedTask: Task = {
   //  id: '',
@@ -43,7 +44,7 @@ export class DataModelService {
   public allTasks: Task[] = [];
   private totalListCount: number = this.categories.length;
   private totalTaskCount: number = 0;
-  private currentListId: string = 'list5';
+  
 
   constructor() {}
 
