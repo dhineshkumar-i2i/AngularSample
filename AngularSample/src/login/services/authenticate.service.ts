@@ -7,10 +7,16 @@ import { Router } from '@angular/router';
 export class AuthenticateService {
 
   public authenticated: boolean = false;
+
   constructor(public router: Router) { }
 
+  /**
+   * This method validates the user credentials.
+   * @param mail 
+   * @param pass 
+   */
   public authenticate(mail: string, pass: string): void {
-    if (mail == 'abcd' && pass == 'abcd') {
+    if (mail === 'abcd' && pass === 'abcd') {
       this.authenticated = true;
       this.router.navigate(['to-do']);
     } else {
